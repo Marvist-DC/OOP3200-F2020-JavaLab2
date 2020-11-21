@@ -8,12 +8,14 @@ package ca.durhamcollege;
 
 import java.time.LocalDate;
 
+// The purpose of Main is to display the functioning WorkTicket class with hard coded values
+// to ensure that it is working as intended
 public class Main {
     public static void main(String[] args) {
         try {
 
             WorkTicket firstWorkTicket = new WorkTicket();
-            WorkTicket secondWorkTicket = new WorkTicket(2, "abc", LocalDate.of(2000, 12, 12), "something");
+            WorkTicket secondWorkTicket = new WorkTicket(1, "abc", LocalDate.of(2000, 12, 12), "something");
             System.out.println(firstWorkTicket.toString());
             System.out.println(secondWorkTicket.toString());
 
