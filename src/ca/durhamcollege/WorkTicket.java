@@ -9,9 +9,11 @@ package ca.durhamcollege;
 import java.time.LocalDate;
 
 public class WorkTicket {
+    // Static constants
+    final static int MINIMUM_YEAR = 2000;
+    final static int MAXIMUM_YEAR = 2099;
+
     // PRIVATE INSTANCE VARIABLES
-    final int MINIMUM_YEAR = 2000;
-    final int MAXIMUM_YEAR = 2099;
     private int myTicketNumber;
     private String myClientID;
     private java.time.LocalDate myDate;
@@ -67,7 +69,7 @@ public class WorkTicket {
         }
     }
 
-    // CONSTRUCTORS
+    // DEFAULT CONSTRUCTORS
     WorkTicket() {
         myTicketNumber = 0;
         myClientID = null;
@@ -75,12 +77,13 @@ public class WorkTicket {
         myDescription = null;
     }
 
+    // PARAMETERIZED CONSTRUCTOR
     WorkTicket(int myTicketNumber, String myClientID, LocalDate myDate, String myDescription) {
         int year = myDate.getYear();
-        if (year < MINIMUM_YEAR || year > MAXIMUM_YEAR) {
-            throw new IllegalArgumentException("Year must be in the range 2000-2099 inclusive");
-        } else if (myTicketNumber <= 0) {
+        if (myTicketNumber <= 0) {
             throw new IllegalArgumentException("Work ticket number must be greater than 0.");
+        } else if (year < MINIMUM_YEAR || year > MAXIMUM_YEAR) {
+            throw new IllegalArgumentException("Year must be in the range 2000-2099 inclusive");
         } else if (myClientID.length() < 1 || myDescription.length() < 1) {
             throw new IllegalArgumentException("Client ID and issue description must be at least 1 in length");
         } else {
@@ -96,7 +99,6 @@ public class WorkTicket {
     public boolean setWorkTicket(int myTicketNumber, String myClientID, LocalDate myDate, String myDescription) {
         boolean isValid = true;
 
-
         if (myTicketNumber <= 0 || myDate.getYear() < MINIMUM_YEAR || myDate.getYear() > MAXIMUM_YEAR) {
             isValid = false;
         } else if (myClientID.length() < 1 || myDescription.length() < 1) {
@@ -109,7 +111,6 @@ public class WorkTicket {
             setMyDate(myDate);
             setMyDescription(myDescription);
         }
-
         return isValid;
     }
 
